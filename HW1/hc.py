@@ -3,8 +3,6 @@ from random import randint
 
 MAX_ITERATIONS = 1
 SAMPLES = 100
-PRECISION = 16
-PRECISION_DEC = pow(2, PRECISION)
 NEIGHBOURHOOD_SPREAD = 10
 PRINT_ITERATIONS = True
 
@@ -39,30 +37,13 @@ def random_selection():
     ]
 
 
-def to_int(value):
-    return int(''.join([str(b) for b in value]), 2)
-
-
-def to_bin(value):
-    return [int(c) for c in bin(value)[2:].rjust(PRECISION, '0')]
-
-
-def to_real(value):
-    max = test_func.max
-    min = test_func.min
-
-    int_val = to_int(value)
-
-    return min + (((max - min) * int_val) / PRECISION_DEC)
-
-
 def random_neighbor(values):
     rand_value = [randint(0, 1) for i in range(0, NEIGHBOURHOOD_SPREAD)]
 
     if randint(0, 1):
-        return to_bin(max(to_int(values) - to_int(rand_value), 0))
+        return to_bin(max(to_int(values) - to_int(rand_value), 0), PRECISION)
     else:
-        return to_bin(min(to_int(values) + to_int(rand_value), PRECISION_DEC))
+        return to_bin(min(to_int(values) + to_int(rand_value), 2**PRECISION), PRECISION)
 
 
 def neighbourhood(values):
@@ -86,7 +67,7 @@ def print_solution(values):
         return
 
     print("%f: (%s)" % (test_func.test(values), ",".join([
-        str(to_real(value))
+        str(to_real(value, test_func.min, test_func.max))
         for value in values
     ])))
 
