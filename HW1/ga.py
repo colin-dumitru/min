@@ -9,6 +9,7 @@ GENE_MUTATION_PROBABILITY = 0.1
 COMBINATION_POINTS = 10
 
 test_func = None
+print_evolution = False
 
 
 def cum_sum(l):
@@ -133,9 +134,16 @@ def get_optimum_solution(population):
 
         population = recombined
 
-        print_chromosome(best_chromosome(population))
+        print_chromosome(best_chromosome(population)) if print_evolution else 0
 
     return population
+
+
+def improve_ga(neighbours):
+    population = sum(neighbours, [])
+    final_population = get_optimum_solution(population)
+
+    return get_optimum_solution(final_population)
 
 
 def do_test():
@@ -144,11 +152,14 @@ def do_test():
         for i in range(0, 10)
     ]
 
-    final_population = get_optimum_solution(initial_population)
+    get_optimum_solution(initial_population)
 
 
 def main():
     global test_func
+    global print_evolution
+
+    print_evolution = True
 
     # test_func = SixHumpCamelBack()
     # test_func = Griewangk()
