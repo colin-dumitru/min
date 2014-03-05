@@ -1,6 +1,7 @@
 from common import *
 from random import random
 from random import randint
+from random import shuffle
 
 ITERATIONS = 100
 SELECTION_SIZE = 0.6
@@ -39,6 +40,7 @@ def selection(population):
     eval = [test_func.fitness(p) for p in population]
     min_fitness = min(eval)
     eval = [v - min_fitness for v in eval]
+
     total_fitness = sum(eval) + 0.0000001
     probabilities = [fitness / total_fitness for fitness in eval]
     cumulative = cum_sum(probabilities)
@@ -130,8 +132,9 @@ def get_optimum_solution(population):
     for i in range(0, ITERATIONS):
         selected = selection(population)
         mutated = mutation(selected)
-        recombined = recombine(mutated, int(len(population) * (1 - SELECTION_SIZE)))
+        recombined = recombine(mutated, int(len(population) * round(1 - SELECTION_SIZE,2)))
 
+        shuffle(recombined)
         population = recombined
 
         print_chromosome(best_chromosome(population)) if print_evolution else 0
@@ -140,16 +143,17 @@ def get_optimum_solution(population):
 
 
 def improve_ga(neighbours):
-    population = sum(neighbours, [])
+    population = [sum(n, []) for n in neighbours]
     final_population = get_optimum_solution(population)
 
-    return get_optimum_solution(final_population)
+    best = best_chromosome(final_population)
+    return partition(best, test_func.variables)
 
 
 def do_test():
     initial_population = [
         [randint(0, 1) for j in range(0, PRECISION * test_func.variables)]
-        for i in range(0, 10)
+        for i in range(0, 100)
     ]
 
     get_optimum_solution(initial_population)
@@ -161,10 +165,10 @@ def main():
 
     print_evolution = True
 
-    # test_func = SixHumpCamelBack()
+    test_func = SixHumpCamelBack()
     # test_func = Griewangk()
     # test_func = Rastrigin()
-    test_func = Rosenbrock()
+    # test_func = Rosenbrock()
 
     do_test()
 

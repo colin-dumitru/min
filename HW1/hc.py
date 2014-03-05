@@ -3,7 +3,7 @@ from random import randint
 
 MAX_ITERATIONS = 1
 SAMPLES = 100
-NEIGHBOURHOOD_SPREAD = 10
+NEIGHBOURHOOD_SPREAD = 8
 PRINT_ITERATIONS = True
 
 improve = None
@@ -38,28 +38,19 @@ def random_selection():
 
 
 def random_neighbor(values):
-    rand_value = [randint(0, 1) for i in range(0, NEIGHBOURHOOD_SPREAD)]
-
-    if randint(0, 1):
-        return to_bin(max(to_int(values) - to_int(rand_value), 0), PRECISION)
-    else:
-        return to_bin(min(to_int(values) + to_int(rand_value), 2**PRECISION), PRECISION)
+    return to_bin(
+        min(max(
+            to_int(values) + randint(-2**NEIGHBOURHOOD_SPREAD, 2**NEIGHBOURHOOD_SPREAD),
+            0), PRECISION_DEC),
+        PRECISION
+    )
 
 
 def neighbourhood(values):
     return [
-        [random_neighbor(values[v]) for v in range(0, test_func.variables)]
+        [random_neighbor(v) for v in values]
         for i in range(0, SAMPLES)
     ]
-
-
-def same_solution(v1, v2):
-    for tuple in zip(v1, v2):
-        for value in zip(tuple[0], tuple[1]):
-            if value[0] != value[1]:
-                return False
-
-    return True
 
 
 def print_solution(values):
@@ -80,16 +71,16 @@ def do_hc():
         print("---------------------- Iteration %d -------------------------" % iterations)
 
         current = random_selection()
-        local = False
+        local = 10
 
-        while not local:
+        while local:
             neighbors = neighbourhood(current)
             improved = improve(neighbors)
 
             if test_func.test(improved) > test_func.test(current):
-                local = True
+                local -= 1
             else:
-                local = False
+                local = 10
                 current = improved
 
             print_solution(current)
@@ -113,8 +104,8 @@ def run_test(func):
 if __name__ == '__main__':
     improve = simple_improve
 
-    #run_test(SixHumpCamelBack())
+    run_test(SixHumpCamelBack())
     #run_test(Rosenbrock())
-    run_test(Griewangk())
+    #run_test(Griewangk())
     #run_test(Rastrigin())
 

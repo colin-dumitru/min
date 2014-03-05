@@ -18,8 +18,8 @@ def run_test(func):
 def main():
     hc.improve = ga.improve_ga
 
-    #run_test(SixHumpCamelBack())
-    run_test(Rosenbrock())
+    run_test(SixHumpCamelBack())
+    #run_test(Rosenbrock())
     #run_test(Griewangk())
     #run_test(Rastrigin())
 
