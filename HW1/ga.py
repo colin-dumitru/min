@@ -10,6 +10,7 @@ GENE_MUTATION_PROBABILITY = 0.1
 COMBINATION_POINTS = 10
 
 test_func = None
+select_func = None
 print_evolution = False
 
 
@@ -36,7 +37,7 @@ def select(cumulative, population):
     return population[-1]
 
 
-def selection(population):
+def roulette_wheel_selection(population):
     eval = [test_func.fitness(p) for p in population]
     min_fitness = min(eval)
     eval = [v - min_fitness for v in eval]
@@ -46,6 +47,17 @@ def selection(population):
     cumulative = cum_sum(probabilities)
 
     return [select(cumulative, population) for i in range(0, int(len(population) * SELECTION_SIZE))]
+
+
+def rank_selection(population):
+    sorted_population = sorted(population, key=lambda x: test_func.fitness(x), reverse=True)
+
+    eval = [1 / (i + 10) for i in range(1, len(population) + 1)]
+    total_fitness = sum(eval) + 0.0000001
+    probabilities = [fitness / total_fitness for fitness in eval]
+    cumulative = cum_sum(probabilities)
+    return [select(cumulative, sorted_population) for i in range(0, int(len(population) * SELECTION_SIZE))]
+
 
 # ------------------- Mutation -----------------------------
 def mutate_gene(gene):
@@ -130,7 +142,7 @@ def print_chromosome(chromosome):
 
 def get_optimum_solution(population):
     for i in range(0, ITERATIONS):
-        selected = selection(population)
+        selected = select_func(population)
         mutated = mutation(selected)
         recombined = recombine(mutated, int(len(population) * round(1 - SELECTION_SIZE,2)))
 
@@ -162,13 +174,17 @@ def do_test():
 def main():
     global test_func
     global print_evolution
+    global select_func
 
     print_evolution = True
 
-    test_func = SixHumpCamelBack()
+    #test_func = SixHumpCamelBack()
     # test_func = Griewangk()
-    # test_func = Rastrigin()
+    test_func = Rastrigin()
     # test_func = Rosenbrock()
+
+    select_func = rank_selection
+    # select_func = roulette_wheel_selection
 
     do_test()
 
