@@ -1,9 +1,7 @@
 from common import *
 from random import randint
 
-MAX_ITERATIONS = 1
-SAMPLES = 100
-NEIGHBOURHOOD_SPREAD = 8
+MAX_ITERATIONS = 10
 PRINT_ITERATIONS = True
 
 improve = None
@@ -37,21 +35,17 @@ def random_selection():
     ]
 
 
-def random_neighbor(values):
-    return to_bin(
-        min(max(
-            to_int(values) + randint(-2**NEIGHBOURHOOD_SPREAD, 2**NEIGHBOURHOOD_SPREAD),
-            0), PRECISION_DEC),
-        PRECISION
-    )
+def random_neighbor(values, index):
+    values = [[b for b in v] for v in values]
+    values[int(index / PRECISION)][index % PRECISION] = randint(0, 1)
+    return values
 
 
 def neighbourhood(values):
     return [
-        [random_neighbor(v) for v in values]
-        for i in range(0, SAMPLES)
+        random_neighbor(values, i)
+        for i in range(0, PRECISION * test_func.variables)
     ]
-
 
 def print_solution(values):
     if not PRINT_ITERATIONS:
@@ -73,11 +67,11 @@ def do_hc():
         current = random_selection()
         local = 10
 
-        while local:
+        while local > 0:
             neighbors = neighbourhood(current)
             improved = improve(neighbors)
 
-            if test_func.test(improved) > test_func.test(current):
+            if test_func.test(improved) >= test_func.test(current):
                 local -= 1
             else:
                 local = 10
