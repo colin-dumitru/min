@@ -1,12 +1,16 @@
-from common import *
 from random import random
 from random import randint
 from random import shuffle
+from random import sample
+from random import getrandbits
+
+from common import *
+
 
 ITERATIONS = 100
-SELECTION_SIZE = 0.6
+SELECTION_SIZE = 0.2
 MUTATION_PROBABILITY = 0.2
-GENE_MUTATION_PROBABILITY = 0.1
+GENE_MUTATION_PROBABILITY = 0.5
 COMBINATION_POINTS = 10
 
 test_func = None
@@ -59,12 +63,21 @@ def rank_selection(population):
     return [select(cumulative, sorted_population) for i in range(0, int(len(population) * SELECTION_SIZE))]
 
 
+def tournament_selection(population):
+    final_population_len = int(len(population) * SELECTION_SIZE)
+
+    population = sample(population, int(len(population) * 0.8))
+    sorted_population = sorted(population, key=lambda x: test_func.fitness(x), reverse=True)
+
+    return sorted_population[:final_population_len]
+
+
 # ------------------- Mutation -----------------------------
 def mutate_gene(gene):
     if random() > GENE_MUTATION_PROBABILITY:
         return gene
 
-    return randint(0,1)
+    return getrandbits(1)
 
 
 def mutate_chromosome(chromosome):
@@ -82,14 +95,25 @@ def mutation(population):
 
 # ------------------- Re-combine -----------------------------
 def either(val1, val2):
-    if randint(0,1):
+    if getrandbits(1):
         return val1
     else:
         return val2
 
 
 def combine(chromosome1, chromosome2):
-    indexes = sorted([randint(0, len(chromosome1)) for i in range(0, COMBINATION_POINTS)])
+    chromosome1 = chromosome1[:]
+
+    for i in range(0, len(chromosome1)):
+        if getrandbits(1):
+            chromosome1[i] = chromosome2[2]
+
+    return chromosome1
+
+
+def combine_old(chromosome1, chromosome2):
+    chromosome_len = len(chromosome1)
+    indexes = sorted([randint(0, chromosome_len) for i in range(0, COMBINATION_POINTS)])
     segments = []
 
     for i in range(0, len(indexes)):
@@ -144,7 +168,7 @@ def get_optimum_solution(population):
     for i in range(0, ITERATIONS):
         selected = select_func(population)
         mutated = mutation(selected)
-        recombined = recombine(mutated, int(len(population) * round(1 - SELECTION_SIZE,2)))
+        recombined = recombine(mutated, int(len(population) * round(1 - SELECTION_SIZE, 2)))
 
         shuffle(recombined)
         population = recombined
@@ -164,7 +188,7 @@ def improve_ga(neighbours):
 
 def do_test():
     initial_population = [
-        [randint(0, 1) for j in range(0, PRECISION * test_func.variables)]
+        [getrandbits(1) for j in range(0, PRECISION * test_func.variables)]
         for i in range(0, 100)
     ]
 
@@ -183,7 +207,8 @@ def main():
     test_func = Rastrigin()
     # test_func = Rosenbrock()
 
-    select_func = rank_selection
+    select_func = tournament_selection
+    # select_func = rank_selection
     # select_func = roulette_wheel_selection
 
     do_test()

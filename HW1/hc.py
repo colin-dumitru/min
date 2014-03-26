@@ -1,7 +1,9 @@
-from common import *
 from random import randint
 
-MAX_ITERATIONS = 10
+from common import *
+
+
+MAX_ITERATIONS = 1
 PRINT_ITERATIONS = True
 
 improve = None

@@ -91,7 +91,15 @@ def partition(l, parts):
 
 
 def to_int(value):
-    return int(''.join([str(b) for b in value]), 2)
+    ret = 0
+
+    for b in value:
+        ret <<= 1
+
+        if b:
+            ret += 1
+
+    return ret
 
 
 def to_bin(value, bits):

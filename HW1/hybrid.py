@@ -8,6 +8,7 @@ import ga
 def run_test(func):
     hc.test_func = func
     ga.test_func = func
+    ga.select_func = ga.tournament_selection
 
     solutions = hc.do_hc()
 
@@ -18,10 +19,12 @@ def run_test(func):
 def main():
     hc.improve = ga.improve_ga
 
-    run_test(SixHumpCamelBack())
+    #run_test(SixHumpCamelBack())
     #run_test(Rosenbrock())
     #run_test(Griewangk())
-    #run_test(Rastrigin())
+    run_test(Rastrigin())
+
 
 if __name__ == '__main__':
+    #profile.run("main()")
     main()
