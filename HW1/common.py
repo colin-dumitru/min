@@ -40,7 +40,7 @@ class Rastrigin(TestFunction):
 
         self.max = 5.12
         self.min = -5.12
-        self.variables = 3
+        self.variables = 10
 
     def test(self, x):
         x = [to_real(xi, self.min, self.max) for xi in x]

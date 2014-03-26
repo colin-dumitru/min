@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4e849498-76ab-491b-95e4-2aa013ce50b2" name="Default" comment="Modified HC to generate neighbours by switching bits.">
+    <list default="true" id="4e849498-76ab-491b-95e4-2aa013ce50b2" name="Default" comment="Performance improvements">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/HW1/common.py" afterPath="$PROJECT_DIR$/HW1/common.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/HW1/ga.py" afterPath="$PROJECT_DIR$/HW1/ga.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/HW1/hc.py" afterPath="$PROJECT_DIR$/HW1/hc.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/HW1/hybrid.py" afterPath="$PROJECT_DIR$/HW1/hybrid.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="min.iws" />
@@ -29,11 +27,13 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="hc.py" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="hc.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/HW1/hc.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="79" column="35" selection-start="1754" selection-end="1754" vertical-scroll-proportion="0.9325397" vertical-offset="856" max-vertical-offset="1870">
-              <folding />
+            <state line="81" column="35" selection-start="1756" selection-end="1756" vertical-scroll-proportion="0.0" vertical-offset="907" max-vertical-offset="1921">
+              <folding>
+                <element signature="e#0#26#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -41,18 +41,18 @@
       <file leaf-file-name="common.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/HW1/common.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="10" column="0" selection-start="164" selection-end="164" vertical-scroll-proportion="0.0" vertical-offset="459" max-vertical-offset="1955">
+            <state line="42" column="27" selection-start="882" selection-end="882" vertical-scroll-proportion="0.0" vertical-offset="153" max-vertical-offset="1955">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ga.py" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="ga.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/HW1/ga.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="100" column="31" selection-start="2679" selection-end="2679" vertical-scroll-proportion="59.423077" vertical-offset="3245" max-vertical-offset="3723">
+            <state line="13" column="22" selection-start="280" selection-end="280" vertical-scroll-proportion="0.4623431" vertical-offset="0" max-vertical-offset="3621">
               <folding>
-                <element signature="e#0#20#0" expanded="true" />
+                <element signature="e#0#25#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -61,7 +61,7 @@
       <file leaf-file-name="hybrid.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/HW1/hybrid.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="29" column="5" selection-start="612" selection-end="612" vertical-scroll-proportion="0.0" vertical-offset="74" max-vertical-offset="578">
+            <state line="28" column="5" selection-start="593" selection-end="593" vertical-scroll-proportion="0.0" vertical-offset="57" max-vertical-offset="561">
               <folding />
             </state>
           </provider>
@@ -81,10 +81,10 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/HW1/common.py" />
-        <option value="$PROJECT_DIR$/HW1/ga.py" />
         <option value="$PROJECT_DIR$/HW1/hybrid.py" />
         <option value="$PROJECT_DIR$/HW1/hc.py" />
+        <option value="$PROJECT_DIR$/HW1/common.py" />
+        <option value="$PROJECT_DIR$/HW1/ga.py" />
       </list>
     </option>
   </component>
@@ -394,12 +394,18 @@
       <created>1394052065441</created>
       <updated>1394052065441</updated>
     </task>
+    <task id="LOCAL-00001" summary="Performance improvements">
+      <created>1395868210313</created>
+      <updated>1395868210313</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="54" y="-8" width="1554" height="916" extended-state="0" />
     <editor active="true" />
     <layout>
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3303685" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -408,7 +414,7 @@
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39898348" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32655653" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32655653" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32909784" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -428,11 +434,15 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="CHECK_NEW_TODO" value="false" />
     <option name="myTodoPanelSettings">
       <TodoPanelSettings />
     </option>
     <MESSAGE value="Modified HC to generate neighbours by switching bits." />
-    <option name="LAST_COMMIT_MESSAGE" value="Modified HC to generate neighbours by switching bits." />
+    <MESSAGE value="Performance improvements" />
+    <option name="LAST_COMMIT_MESSAGE" value="Performance improvements" />
+    <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
+    <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -458,7 +468,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="67" column="51" selection-start="1914" selection-end="1954" vertical-scroll-proportion="0.0" vertical-offset="990" max-vertical-offset="3536">
           <folding>
-            <element signature="e#0#20#0" expanded="true" />
+            <element signature="e#0#25#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -488,7 +498,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="5" column="0" selection-start="102" selection-end="102" vertical-scroll-proportion="0.0" vertical-offset="85" max-vertical-offset="3383">
           <folding>
-            <element signature="e#0#20#0" expanded="true" />
+            <element signature="e#0#25#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -511,7 +521,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="44" column="40" selection-start="964" selection-end="964" vertical-scroll-proportion="0.0" vertical-offset="51" max-vertical-offset="3383">
           <folding>
-            <element signature="e#0#20#0" expanded="true" />
+            <element signature="e#0#25#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -537,33 +547,35 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/HW1/common.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="0" selection-start="164" selection-end="164" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1955">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/HW1/ga.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="100" column="31" selection-start="2679" selection-end="2679" vertical-scroll-proportion="59.423077" vertical-offset="3245" max-vertical-offset="3723">
-          <folding>
-            <element signature="e#0#20#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/HW1/hybrid.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="29" column="5" selection-start="612" selection-end="612" vertical-scroll-proportion="0.0" vertical-offset="74" max-vertical-offset="578">
+        <state line="28" column="5" selection-start="593" selection-end="593" vertical-scroll-proportion="0.0" vertical-offset="57" max-vertical-offset="561">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/HW1/hc.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="79" column="35" selection-start="1754" selection-end="1754" vertical-scroll-proportion="0.9325397" vertical-offset="856" max-vertical-offset="1870">
+        <state line="81" column="35" selection-start="1756" selection-end="1756" vertical-scroll-proportion="0.0" vertical-offset="907" max-vertical-offset="1921">
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/HW1/common.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="42" column="27" selection-start="882" selection-end="882" vertical-scroll-proportion="0.0" vertical-offset="459" max-vertical-offset="1955">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/HW1/ga.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="13" column="22" selection-start="280" selection-end="280" vertical-scroll-proportion="0.4623431" vertical-offset="0" max-vertical-offset="3621">
+          <folding>
+            <element signature="e#0#25#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

@@ -8,10 +8,10 @@ from common import *
 
 
 ITERATIONS = 100
-SELECTION_SIZE = 0.2
+SELECTION_SIZE = 0.1
 MUTATION_PROBABILITY = 0.2
 GENE_MUTATION_PROBABILITY = 0.5
-COMBINATION_POINTS = 10
+COMBINATION_POINTS = 5
 
 test_func = None
 select_func = None
@@ -102,16 +102,6 @@ def either(val1, val2):
 
 
 def combine(chromosome1, chromosome2):
-    chromosome1 = chromosome1[:]
-
-    for i in range(0, len(chromosome1)):
-        if getrandbits(1):
-            chromosome1[i] = chromosome2[2]
-
-    return chromosome1
-
-
-def combine_old(chromosome1, chromosome2):
     chromosome_len = len(chromosome1)
     indexes = sorted([randint(0, chromosome_len) for i in range(0, COMBINATION_POINTS)])
     segments = []
